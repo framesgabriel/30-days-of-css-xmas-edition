@@ -1,0 +1,149 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  --default-size: 40px;
+}
+
+body {
+  background-color: #f6f6f6;
+}
+
+.center {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+.container {
+  width: 25em;
+  height: 35em;
+}
+
+#tree {
+  height: 80%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tree-star {
+  width: var(--default-size);
+  height: var(--default-size);
+  border-radius: 50%;
+  background-color: #f6b335;
+
+  animation: fromTop 0.4s backwards;
+}
+
+/* #region TREE LINES */
+.tree-line {
+  height: var(--default-size);
+  margin-top: var(--default-size);
+
+  background-color: #006533;
+  border-radius: 25px;
+
+  transform: rotate(-10deg);
+  animation: fromTop 0.7s backwards;
+}
+
+.tree-line:nth-child(2) {
+  width: 25%;
+  animation-delay: 0.2s;
+}
+
+.tree-line:nth-child(3) {
+  width: 40%;
+  animation-delay: 0.3s;
+}
+
+.tree-line:nth-child(4) {
+  width: 55%;
+  animation-delay: 0.4s;
+}
+
+.tree-line:nth-child(5) {
+  width: 70%;
+  animation-delay: 0.5s;
+}
+
+.tree-line:nth-child(6) {
+  width: 85%;
+  animation-delay: 0.6s;
+}
+
+/* #endregion TREE LINES */
+
+/* #region TREE LINES AFTER */
+.tree-line::after {
+  content: "";
+  position: absolute;
+  height: var(--default-size);
+  width: var(--default-size);
+  border-radius: 50%;
+  animation: 4s blink infinite backwards;
+}
+
+.tree-line:nth-child(3)::after {
+  right: 15%;
+  background-color: #e10713;
+  animation-delay: 2s;
+}
+
+.tree-line:nth-child(4)::after {
+  left: 23%;
+  background-color: #95c11f;
+}
+
+.tree-line:nth-child(5)::after {
+  right: 25%;
+  background-color: #019ee2;
+  animation-delay: 2s;
+}
+
+.tree-line:nth-child(6)::after {
+  left: 27%;
+  opacity: 1;
+  background-color: #e51f74;
+}
+
+/* #endregion TREE LINES AFTER */
+
+@keyframes fromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-60px) rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-10deg);
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  * {
+    --default-size: 20px;
+  }
+
+  .container {
+    width: 15em;
+    height: 25em;
+  }
+}
